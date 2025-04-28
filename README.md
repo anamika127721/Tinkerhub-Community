@@ -19,8 +19,7 @@ Two prominent action buttons:
 Join Community: Redirects to the official TinkerHub website.
 
 Explore Events: Redirects to the Events page.
-
-
+_________________________________________________________________________________________
 2. Events Section
 Lists all upcoming community events in an attractive, card-style layout.
 
@@ -33,8 +32,7 @@ Search Bar: Quickly find events by name or keyword.
 Event Details: Displays event name, date, and a brief description.
 
 Register Button: (Currently inactive) Intended for future event registrations.
-
-
+_____________________________________________________________________________________________________
 3. Resources Section
 Divided into two major categories:
 
@@ -45,16 +43,14 @@ Learning Resources: Browse through online courses and learning materials.
 Each resource has a like button:
 
 On clicking, the resource appears in the Liked Resources section for quick access.
-
-
+______________________________________________________________________________________________________________
 4. Announcements Page
 Displays all announcements sorted by their publication dates.
 
 Search bar available for quickly finding specific announcements.
 
 A banner image at the top adds visual appeal.
-
-
+______________________________________________________________________________________________________________
 5. Forum (Community Chat) Page
 A community forum for members to interact, share, and discuss.
 
@@ -67,8 +63,7 @@ Like, comment, share, edit, and delete posts and comments.
 Like button changes emoji when clicked for better user engagement.
 
 Smooth and interactive communication within the community.
-
-
+__________________________________________________________________________________________________________________
 6. Login Page
 A popup login page for user authentication.
 
@@ -79,8 +74,7 @@ Username textbox
 Password textbox
 
 Submit button for login
-
-
+______________________________________________________________________________________________________________________
 Technologies Used
 
 HTML5 - For webpage structure.
