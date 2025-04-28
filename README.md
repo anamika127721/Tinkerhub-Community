@@ -1,5 +1,5 @@
-TinkerHub Campus Community Website
-Overview
+TinkerHub Campus Community Website Overview.
+
 This project is a simple, user-friendly, and attractive website designed for the TinkerHub Campus Community.
 It aims to create an online space where students can learn, connect, and collaborate with like-minded individuals.
 The website showcases important features of the community, upcoming events, resources, announcements, and a community forum.
