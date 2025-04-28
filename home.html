@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TinkerHub Campus Community</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Overlay for closing menu when clicking outside -->
+  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+  <!-- Side Menu -->
+  <div class="side-menu" id="sideMenu">
+    <a href="home.html">Home</a>
+    <a href="event.html">Events</a>
+    <a href="resource.html">Resources</a>
+    <a href="Announcement/announcements.html">Announcements</a>
+    <a href="chat.html">Forum</a>
+    <a href="login.html">Login</a> <!-- Replace dynamically with profile if logged in -->
+  </div>
+
+  <!-- Hamburger -->
+  <div class="hamburger" onclick="toggleMenu(event)">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <!-- Logo and Header -->
+  <header class="main-header">
+    <img src="Photos/logo.jpeg" alt="TinkerHub Logo" class="logo" />
+    <h1>TinkerHub Campus Community</h1>
+    <p class="tagline">Empowering Students Through Tech & Innovation</p>
+  </header>
+
+  <!-- Image Slider Section -->
+  <section class="slider-container">
+    <div class="slider" id="slider">
+      <img src="Photos/img1.jpeg" alt="Slide 1" />
+      <img src="Photos/img2.jpeg" alt="Slide 2" />
+      <img src="Photos/img3.jpeg" alt="Slide 3" />
+    </div>
+    <div class="slider-buttons">
+      <button class="cta" onclick="joinCommunity()">Join Community</button>
+      <button class="cta" onclick="exploreEvents()">Explore Events</button>
+    </div>
+  </section>
+
+  <!-- Info Sections -->
+  <section class="info-section">
+    <h2>What is TinkerHub?</h2>
+    <p><i>TinkerHub is a community-driven platform that helps students grow in tech through peer learning, events, and projects.</i></p>
+    <p>TinkerHub started as a student community at CUSAT and grow to a Nonprofit Foundation with a full-time team expanding across Kerala over the last 8 years.
+      Thus by equipping individuals with future technologies, the foundation aims at creating a potent workforce, capable of unlocking the vast reservoir of untapped potential, in the form of creativity and innovation that the youth of the 21st century holds. The choice is the greatest luxury one can have; and to exercise that, it is only imperative that we arm each and every student with the right options to choose from. By improving specific learning outcomes, Tinkerhub essentially places People First by empowering these individuals with technology education and skill sets, to make sustainable choices and multi-dimensional solutions, that the complex new world needs. Thus, by arming them with the potent tools, through an inclusive culture, and problem-solving environment and imbibing the values of “technology for good”, Tinkerhub is trying to create a better, equal, and more sustainable world. 
+    </p>
+  </section>
+
+  <section class="info-section">
+    <h2>Our Mission</h2>
+    <p><i>To build a culture of self-learning and innovation by making tech resources and opportunities accessible for everyone.</i></p>
+   <p>Tinkerhub’s mission is to empower people, whether it be a student or a tech-enthusiast, by giving them an opportunity to learn emerging technology skill sets that would accelerate innovation within their learning path, and make them future-ready tech- talents. By pursuing this mission, the Foundation aims at creating a focussed platform to accelerate the learning of skills to be on par with the global technology ecosystem and the new global workplace. Tinkerhub works as a community of enthusiasts that focuses on nurturing co-creation and catalyzing a technology learning culture through peer-to-peer or reciprocal learning.</p> 
+  </section>
+
+  <section class="info-section">
+    <h2>Contact Us</h2>
+    <p>Email: contact@tinkerhub.org<br />Phone: +91-XXXXXXXXXX</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 TinkerHub Campus Community. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    function joinCommunity() {
+      // Replace this URL with your actual Join Community page/link
+      window.location.href = "https://tinkerhub.org/"; 
+    }
+
+    function exploreEvents() {
+      window.location.href = "event.html";
+    }
+
+  function openLogin() {
+    window.open('login.html', 'Login', 'width=400,height=500,left=600,top=200');
+  }
+
+  </script>
+</body>
+</html>

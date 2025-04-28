@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Announcements</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; color: #333; padding-bottom: 50px; }
+
+    /* Top Banner Section */
+    .top-image {
+      width: 100%; /* Full width */
+      height: 250px; /* Set height */
+      overflow: hidden; /* Ensures the image is clipped if it overflows */
+    }
+
+    .top-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures the image covers the div */
+      object-position: center center; /* Centers the image */
+    }
+
+    .container { 
+      max-width: 900px; 
+      margin: -50px auto 0; 
+      padding: 20px; 
+      background: white; 
+      border-radius: 15px; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    }
+
+    .search-bar { 
+      margin: 20px 0; 
+      display: flex; 
+      justify-content: center; 
+    }
+
+    .search-bar input { 
+      width: 60%; 
+      padding: 10px; 
+      border: 1px solid #ccc; 
+      border-radius: 25px 0 0 25px; 
+      outline: none; 
+    }
+
+    .search-bar button { 
+      padding: 10px 20px; 
+      border: none; 
+      background: #1e88e5; 
+      color: white; 
+      border-radius: 0 25px 25px 0; 
+      cursor: pointer; 
+    }
+
+    .announcement {
+      background: #f9f9f9;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .announcement:hover {
+      background: #e8f0fe;
+    }
+
+    .announcement h3 { 
+      margin-bottom: 8px; 
+      font-size: 1.2rem; 
+    }
+
+    .announcement small { 
+      color: #888; 
+    }
+
+    .announcement p { 
+      margin-top: 5px; 
+      font-size: 0.95rem; 
+    }
+
+    .no-results { 
+      text-align: center; 
+      margin-top: 20px; 
+      font-size: 1rem; 
+      color: #777; 
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Top Banner -->
+  <div class="top-image">
+    <a href="announcement.jpeg" target="_blank">
+      <img src="announcement.jpeg" alt="Announcement Banner">
+    </a>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search announcements..." onkeyup="searchAnnouncements()">
+      <button onclick="searchAnnouncements()">Search</button>
+    </div>
+
+    <!-- Announcements List -->
+    <div id="announcementsList">
+
+      <a href="dark-mode-announcement.html" class="announcement">
+        <h3>New Feature Launch: Dark Mode 🌙</h3>
+        <small>April 28, 2025</small>
+        <p>Introducing Dark Mode! Give your eyes a break and enjoy a new sleek look.</p>
+      </a>
+
+      <a href="maintenance-notice.html" class="announcement">
+        <h3>Scheduled Maintenance Downtime 🛠️</h3>
+        <small>April 25, 2025</small>
+        <p>Heads up! Temporary downtime scheduled for backend upgrades.</p>
+      </a>
+
+      <a href="hackathon-winners.html" class="announcement">
+        <h3>Announcing Hackathon Winners 🎉</h3>
+        <small>April 22, 2025</small>
+        <p>Celebrating innovation and creativity from our latest hackathon!</p>
+      </a>
+
+      <a href="april-newsletter.html" class="announcement">
+        <h3>April 2025 Newsletter is Live! 📰</h3>
+        <small>April 20, 2025</small>
+        <p>Catch up on all the highlights, events, and updates from April.</p>
+      </a>
+
+    </div>
+
+    <div id="noResults" class="no-results" style="display: none;">
+      No announcements found.
+    </div>
+
+  </div>
+
+  <script>
+    function searchAnnouncements() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const announcements = document.querySelectorAll('.announcement');
+      let hasResults = false;
+
+      announcements.forEach(announcement => {
+        const text = announcement.textContent.toLowerCase();
+        if (text.includes(input)) {
+          announcement.style.display = 'block';
+          hasResults = true;
+        } else {
+          announcement.style.display = 'none';
+        }
+      });
+
+      document.getElementById('noResults').style.display = hasResults ? 'none' : 'block';
+    }
+  </script>
+
+</body>
+</html>

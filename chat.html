@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community Feed</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; background: #f4f6f9; }
+    .sidebar { width: 250px; background: #1e1e2f; color: white; padding: 20px; display: flex; flex-direction: column; }
+    .sidebar h2 { margin-bottom: 20px; font-size: 1.4rem; }
+    .room { margin: 10px 0; padding: 10px; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+    .room:hover, .room.active { background: #33334d; }
+    .feed-container { flex: 1; display: flex; flex-direction: column; padding: 20px; overflow-y: auto; }
+    .post { background: white; border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: relative; }
+    .post-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .avatar-name { display: flex; align-items: center; }
+    .avatar { width: 40px; height: 40px; background: #ccc; border-radius: 50%; margin-right: 10px; }
+    .delete-post-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #888; }
+    .delete-post-btn:hover { color: red; }
+    .post-img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin: 10px 0; }
+    .post-actions { display: flex; gap: 15px; margin-bottom: 10px; }
+    .post-actions button { background: none; border: none; cursor: pointer; font-size: 1rem; color: #333; }
+    .post-description { margin-bottom: 10px; font-size: 0.95rem; }
+    .comment-section { margin-top: 10px; }
+    .comment-section input { width: 80%; padding: 8px; border-radius: 8px; border: 1px solid #ccc; }
+    .comment-section button { padding: 8px 12px; background: #1e88e5; color: white; border: none; border-radius: 8px; margin-left: 10px; cursor: pointer; }
+    .comment-display { margin-top: 10px; }
+    .comment { background: #f0f0f0; padding: 5px 10px; border-radius: 5px; margin: 5px 0; position: relative; }
+    .comment button { background: none; border: none; cursor: pointer; font-size: 0.8rem; margin-left: 10px; }
+    #post-creator { display: none; background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    #post-creator textarea { width: 100%; height: 80px; margin-bottom: 10px; padding: 10px; resize: none; border: 1px solid #ccc; border-radius: 8px; }
+    #post-creator input[type="file"] { margin-bottom: 10px; }
+    #post-creator button { background: #1e88e5; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Categories</h2>
+    <div class="room active">Forum</div>
+    <div class="room">
+    <a href="home.html">Home</a>
+  </div>
+    
+    <div class="room" onclick="togglePostCreator()">➕ Make Your Post</div>
+  </div>
+
+  <!-- Feed -->
+  <div class="feed-container" id="feed">
+
+    <!-- Post Creator (Hidden Initially) -->
+    <div id="post-creator">
+      <textarea id="postText" placeholder="What's on your mind?"></textarea>
+      <input type="file" id="mediaUpload" accept="image/*,video/*" />
+      <br/>
+      <button onclick="createPost()">Post</button>
+    </div>
+
+    <!-- Example Post by others -->
+    <div class="post">
+      <div class="post-header">
+        <div class="avatar-name">
+          <div class="avatar"></div>
+          <strong>Alice</strong>
+        </div>
+      </div>
+      <img src="Photos/alice.jpeg"Post" class="post-img">
+      <div class="post-actions">
+        <button onclick="toggleLike(this)">❤️ Like</button>
+        <button>💬 Comment</button>
+        <button>🔗 Share</button>
+      </div>
+      <div class="post-description">
+        Excited for the upcoming hackathon! Let’s win this one! 🚀
+      </div>
+      <div class="comment-section">
+        <input type="text" placeholder="Add a comment..." />
+        <button onclick="postComment(this)">Post</button>
+        <div class="comment-display"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function togglePostCreator() {
+      const creator = document.getElementById('post-creator');
+      creator.style.display = creator.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function createPost() {
+      const text = document.getElementById('postText').value.trim();
+      const mediaInput = document.getElementById('mediaUpload');
+      const file = mediaInput.files[0];
+
+      if (!text && !file) {
+        alert("Please add some text or media.");
+        return;
+      }
+
+      const postDiv = document.createElement('div');
+      postDiv.classList.add('post');
+
+      let mediaHTML = '';
+      if (file) {
+        if (file.type.startsWith('video')) {
+          mediaHTML = `<video class="post-img" controls><source src="${URL.createObjectURL(file)}"></video>`;
+        } else {
+          mediaHTML = `<img src="${URL.createObjectURL(file)}" class="post-img" alt="Uploaded Media">`;
+        }
+      }
+
+      postDiv.innerHTML = `
+        <div class="post-header">
+          <div class="avatar-name">
+            <div class="avatar"></div>
+            <strong>You</strong>
+          </div>
+          <button class="delete-post-btn" onclick="deletePost(this)">🗑️</button>
+        </div>
+        ${mediaHTML}
+        <div class="post-actions">
+          <button onclick="toggleLike(this)">❤️ Like</button>
+          <button>💬 Comment</button>
+          <button>🔗 Share</button>
+        </div>
+        <div class="post-description">${text}</div>
+        <div class="comment-section">
+          <input type="text" placeholder="Add a comment..." />
+          <button onclick="postComment(this)">Post</button>
+          <div class="comment-display"></div>
+        </div>
+      `;
+
+      const feed = document.getElementById('feed');
+      feed.insertBefore(postDiv, feed.children[1]); // Insert after post-creator
+
+      document.getElementById('postText').value = "";
+      document.getElementById('mediaUpload').value = "";
+      document.getElementById('post-creator').style.display = 'none';
+    }
+
+    function toggleLike(button) {
+      if (button.textContent.includes("Liked")) {
+        button.innerHTML = "❤️ Like";
+        button.style.color = "#333";
+      } else {
+        button.innerHTML = "💖 Liked";
+        button.style.color = "red";
+      }
+    }
+
+    function postComment(btn) {
+      const input = btn.previousElementSibling;
+      const comment = input.value.trim();
+      if (comment) {
+        const display = btn.parentElement.querySelector(".comment-display");
+        const newComment = document.createElement("div");
+        newComment.classList.add('comment');
+        newComment.innerHTML = `You: ${comment} 
+          <button onclick="editComment(this)">Edit</button> 
+          <button onclick="deleteComment(this)">Delete</button>`;
+        display.appendChild(newComment);
+        input.value = "";
+      }
+    }
+
+    function editComment(button) {
+      const commentDiv = button.parentElement;
+      const text = prompt("Edit your comment:", commentDiv.textContent.split('Edit')[0].trim());
+      if (text !== null) {
+        commentDiv.innerHTML = `You: ${text} 
+          <button onclick="editComment(this)">Edit</button> 
+          <button onclick="deleteComment(this)">Delete</button>`;
+      }
+    }
+
+    function deleteComment(button) {
+      button.parentElement.remove();
+    }
+
+    function deletePost(button) {
+      if (confirm("Are you sure you want to delete this post?")) {
+        button.closest('.post').remove();
+      }
+    }
+  </script>
+
+</body>
+</html>

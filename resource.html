@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resources Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .section {
+      margin-top: 50px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: flex-start; /* Align cards to the left */
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      width: 280px;
+      padding: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 230px;
+    }
+
+    .card .date {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #ffd54f;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    .card .title {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 40px;
+      font-weight: 600;
+    }
+
+    .card .desc {
+      text-align: center;
+      font-size: 0.95rem;
+      margin: 10px 0 20px;
+      color: #555;
+    }
+
+    .card button {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .notes-btn {
+      background: #00bcd4;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .course-btn {
+      background: #7e57c2;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .like-btn {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: #e0e0e0;
+      color: #333;
+      font-size: 0.85rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .like-btn.liked {
+      background: #4caf50;
+      color: white;
+    }
+
+    .remove-btn {
+      background: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="room">
+    <a href="home.html">Home</a>
+  </div>
+
+  <h1>Resources</h1>
+
+  <!-- Event Resources Section -->
+  <div class="section">
+    <h2>Event Resources</h2>
+    <div class="card-container" id="event-resources">
+      <div class="card" data-section="event">
+        <div class="date">Apr 10</div>
+        <div class="title">Git Workshop</div>
+        <div class="desc">Introduction to Git and GitHub.</div>
+        <a href="https://blog.unwiredlearning.com/git-github-notes" style="text-decoration: none;">
+          <button class="notes-btn">Notes</button>
+        </a>
+        <div class="like-btn" onclick="toggleLike(this)">Like</div>
+      </div>
+
+      <div class="card" data-section="event">
+        <div class="date">Apr 15</div>
+        <div class="title">AI Talk</div>
+        <div class="desc">Basics of Artificial Intelligence.</div>
+        <a href="https://www.geeksforgeeks.org/what-is-artificial-intelligence-ai/" style="text-decoration: none;">
+          <button class="notes-btn">Notes</button>
+        </a>
+        <div class="like-btn" onclick="toggleLike(this)">Like</div>
+      </div>
+
+      <div class="card" data-section="event">
+        <div class="date">Apr 20</div>
+        <div class="title">UI Design</div>
+        <div class="desc">Learn about Figma and wireframes.</div>
+        <a href="https://www.figma.com/resource-library/what-is-ui-design/" style="text-decoration: none;">
+          <button class="notes-btn">Notes</button>
+        </a>
+        <div class="like-btn" onclick="toggleLike(this)">Like</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Learning Section -->
+  <div class="section">
+    <h2>Learning</h2>
+    <div class="card-container" id="learning-resources">
+      <div class="card" data-section="learning">
+        <div class="date">Apr 05</div>
+        <div class="title">HTML Basics</div>
+        <div class="desc">Understand the structure of web pages.</div>
+        <a href="https://www.coursera.org/learn/html" style="text-decoration: none;">
+          <button class="course-btn">Course</button>
+        </a>
+        <div class="like-btn" onclick="toggleLike(this)">Like</div>
+      </div>
+
+      <div class="card" data-section="learning">
+        <div class="date">Apr 07</div>
+        <div class="title">CSS Styling</div>
+        <div class="desc">Learn to make websites beautiful.</div>
+        <a href="https://www.coursera.org/learn/introcss?utm_medium=institutions&utm_source=umich&utm_campaign" style="text-decoration: none;">
+          <button class="course-btn">Course</button>
+        </a>
+        <div class="like-btn" onclick="toggleLike(this)">Like</div>
+      </div>
+
+      <div class="card" data-section="learning">
+        <div class="date">Apr 08</div>
+        <div class="title">JS Crash Course</div>
+        <div class="desc">Kickstart your JavaScript journey.</div>
+        <a href="https://www.coursera.org/learn/javascript?utm_medium=institutions&utm_source=umich&utm_campaign" style="text-decoration: none;">
+          <button class="course-btn">Course</button>
+        </a>
+        <div class="like-btn" onclick="toggleLike(this)">Like</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Liked Section -->
+  <div class="section">
+    <h2>Liked</h2>
+    <div class="card-container" id="liked-section">
+      <!-- Liked cards will appear here -->
+    </div>
+  </div>
+
+  <script>
+    function toggleLike(btn) {
+      const card = btn.parentElement;
+      const likedSection = document.getElementById("liked-section");
+
+      if (btn.classList.contains("liked")) {
+        btn.classList.remove("liked");
+        btn.innerText = "Like";
+
+        // Remove from liked section
+        const likedCards = likedSection.querySelectorAll(".card");
+        likedCards.forEach(likedCard => {
+          if (likedCard.dataset.key === card.dataset.key) {
+            likedCard.remove();
+          }
+        });
+
+        // Reset the "like" button text to "Like" in the original section
+        const allCards = document.querySelectorAll(".card");
+        allCards.forEach(c => {
+          if (c.dataset.key === card.dataset.key) {
+            const likeBtn = c.querySelector(".like-btn");
+            likeBtn.classList.remove("liked");
+            likeBtn.innerText = "Like";
+          }
+        });
+
+      } else {
+        btn.classList.add("liked");
+        btn.innerText = "Liked";
+
+        // Clone the card and modify
+        const clone = card.cloneNode(true);
+        clone.querySelector(".like-btn").remove();
+
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "remove-btn";
+        removeBtn.innerText = "Remove";
+        removeBtn.onclick = () => {
+          // Remove the card from liked section
+          clone.remove();
+
+          // Reset the "like" button to "Like" in original sections
+          const originalCard = document.querySelector(`.card[data-key='${clone.dataset.key}']`);
+          const likeBtn = originalCard.querySelector(".like-btn");
+          likeBtn.classList.remove("liked");
+          likeBtn.innerText = "Like";
+        };
+
+        clone.appendChild(removeBtn);
+
+        // Set a unique identifier for the card
+        const uniqueKey = Math.random().toString(36).substring(2, 10);
+        card.dataset.key = uniqueKey;
+        clone.dataset.key = uniqueKey;
+
+        likedSection.appendChild(clone);
+      }
+    }
+  </script>
+
+</body>
+</html>
